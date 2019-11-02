@@ -48,16 +48,33 @@
         android:id="@+id/guestHouseListFragment"
         android:name="com.example.kozyhub.ui.guest_house_list.GuestHouseListFragment"
         android:label="@string/title_guest_house_list"
-        tools:layout="@layout/fragment_guest_house_list" />
+        tools:layout="@layout/fragment_guest_house_list" >
+        <action
+            android:id="@+id/action_guestHouseListFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coworkingSpaceListFragment"
         android:name="com.example.kozyhub.ui.coworking_space_list.CoworkingSpaceListFragment"
         android:label="@string/coWorking"
-        tools:layout="@layout/fragment_coworking_space_list" />
+        tools:layout="@layout/fragment_coworking_space_list" >
+        <action
+            android:id="@+id/action_coworkingSpaceListFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/restaurantListFragment"
         android:name="com.example.kozyhub.ui.restaurant_list.RestaurantListFragment"
-        android:label="Restaurant" />
+        android:label="Restaurant" >
+        <action
+            android:id="@+id/action_restaurantListFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.kozyhub.ui.product_detail.ProductDetailFragment"
+        android:label="Product Detail"
+        tools:layout="@layout/fragment_product_detail" />
 
 
 </navigation>
