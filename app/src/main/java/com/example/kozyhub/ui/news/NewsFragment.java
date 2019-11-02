@@ -13,23 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.kozyhub.R;
+import com.example.kozyhub.ui.product_list.ProductListFragment;
 
-public class NewsFragment extends Fragment {
-
-    private NewsViewModel newsViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        newsViewModel =
-                ViewModelProviders.of(this).get(NewsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_news, container, false);
-        final TextView textView = root.findViewById(R.id.text_news);
-        newsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
+public class NewsFragment extends ProductListFragment {
 }
