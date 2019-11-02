@@ -11,12 +11,13 @@ public class ProductListViewModel extends ViewModel {
     public ProductListViewModel() {
         data = new MutableLiveData<>();
 
-        ProductListData[] pd = {
-                new ProductListData("Design Thinking Workshop", "At KozyHub Palmerah", "20 December 2019"),
-                new ProductListData("Worklife Balance Workshop", "At Glora House", "29 December 2019")
-        };
+        ProductListData[] pd = {};
 
         data.setValue(pd);
+    }
+
+    public void setData(ProductListData[] data) {
+        this.data.setValue(data);
     }
 
     public LiveData<ProductListData[]> getData() {

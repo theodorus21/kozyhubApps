@@ -61,6 +61,7 @@
                 android:layout_marginTop="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/booking_guest_house_thumb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -100,6 +101,7 @@
                 android:layout_margin="5dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/booking_coworing_space_thumb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -123,7 +125,7 @@
                         android:layout_width="0dp"
                         android:layout_height="70dp"
                         android:background="#fff"
-                        android:text="@string/guest"
+                        android:text="@string/coWorking"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/imageView5"
                         app:layout_constraintHorizontal_bias="0.091"
@@ -140,6 +142,7 @@
                 android:layout_margin="5dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/booking_property_management_thumb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -163,12 +166,94 @@
                         android:layout_width="0dp"
                         android:layout_height="70dp"
                         android:background="#fff"
-                        android:text="@string/guest"
+                        android:text="@string/property"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/imageView4"
                         app:layout_constraintHorizontal_bias="0.091"
                         app:layout_constraintStart_toStartOf="@+id/imageView4"
                         app:layout_constraintTop_toTopOf="@+id/imageView4"
+                        app:layout_constraintVertical_bias="1.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/booking_resto_cafe_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:layout_marginTop="16dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/home_title"
+                        android:cropToPadding="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/homeapps"
+                        tools:srcCompat="@drawable/homeapps" />
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:background="#fff"
+                        android:text="Restaurant"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView50"
+                        app:layout_constraintHorizontal_bias="0.091"
+                        app:layout_constraintStart_toStartOf="@+id/imageView50"
+                        app:layout_constraintTop_toTopOf="@+id/imageView50"
+                        app:layout_constraintVertical_bias="1.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/booking_catering_thumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:layout_marginTop="16dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/home_title"
+                        android:cropToPadding="true"
+                        android:scaleType="centerInside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/homeapps"
+                        tools:srcCompat="@drawable/homeapps" />
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:background="#fff"
+                        android:text="@string/guest"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView60"
+                        app:layout_constraintHorizontal_bias="0.091"
+                        app:layout_constraintStart_toStartOf="@+id/imageView60"
+                        app:layout_constraintTop_toTopOf="@+id/imageView60"
                         app:layout_constraintVertical_bias="1.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

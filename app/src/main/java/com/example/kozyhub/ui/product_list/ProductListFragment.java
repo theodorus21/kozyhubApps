@@ -39,4 +39,8 @@ public class ProductListFragment extends Fragment {
 
         return root;
     }
+
+    public void setData(ProductListData[] data) {
+        this.vm.setData(data);
+    }
 }
