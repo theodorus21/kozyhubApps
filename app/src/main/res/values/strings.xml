@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">KozyHub</string>
+    <string name="title_home">Home</string>
+    <string name="home_title">Kolaborasikan Seluruh Karyamu</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_book">Booking</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_event">Event</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="name">Name</string>
+    <string name="daftar">Daftar Sekarang</string>
+    <string name="explore">Explre Kozyhub!</string>
+    <string name="guest">Guest House</string>
+    <string name="coWorking">Co-Working Space</string>
+    <string name="property">Property Management</string>
+    <string name="about">About KozyHub!</string>
+    <string name="whats">What\'s KozyHub!</string>
+    <string name="aboutdtl">KozyHub adalah perusahaan Properti Management berbasis teknologi. KozyHub hadir dengan satu konsep dasar, yaitu: Co-living and Co-working Conveniently under One Roof. KozyHub mendukung gaya hidup milenials dan generasi muda di kota besar dengan memberikan akses untuk tinggal dan bekerja dengan harga yang terjangkau.</string>
+    <string name="eventHiglight">Event Highlight</string>
+
+    <string name="eventTitle">Event Title</string>
+    <string name="eventLoc">At Event Location</string>
+    <string name="eventDate">xx Des 2019</string>
+</resources>
