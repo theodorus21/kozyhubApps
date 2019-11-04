@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.example.kozyhub.R;
 import com.example.kozyhub.model.ProductData;
 import com.example.kozyhub.ui.product_list.ProductListFragment;
 
 public class NewsFragment extends ProductListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        this.destinationAction = R.id.action_navigation_news_to_productDetailFragment;
+
         View root = super.onCreateView(inflater, container, savedInstanceState);
 
         ProductData[] data = {
