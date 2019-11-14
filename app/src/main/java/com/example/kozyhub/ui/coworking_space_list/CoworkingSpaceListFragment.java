@@ -15,8 +15,6 @@ import com.example.kozyhub.ui.product_list.ProductListFragment;
 public class CoworkingSpaceListFragment extends ProductListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.destinationAction = R.id.action_coworkingSpaceListFragment_to_productDetailFragment;
-
         View root = super.onCreateView(inflater, container, savedInstanceState);
 
         ProductData[] data = {

@@ -41,16 +41,13 @@ public class NotificationsFragment extends Fragment {
             root.findViewById(R.id.btn_login_link).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                     navController.navigate(R.id.action_navigation_notifications_to_navigation_profile);
                 }
             });
         }
 
-//        final WebView bookingView = root.findViewById(R.id.webvw);
-//        bookingView.getSettings().setJavaScriptEnabled(true);
-//        bookingView.setWebViewClient(new WebViewClient());
-//        bookingView.loadUrl("https://kozyhub.com/index.php?page=login");
         return root;
     }
 }

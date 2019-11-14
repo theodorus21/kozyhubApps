@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.kozyhub.R;
 import com.example.kozyhub.model.ProductData;
 
@@ -21,16 +23,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private ProductListViewModel vm;
 
     public static class ProductListViewHolder extends RecyclerView.ViewHolder {
-        public ConstraintLayout cl;
+        public LinearLayout container;
         public TextView tvName, tvShortDesc, tvLongDesc;
+        public ImageView ivImage;
 
-        public ProductListViewHolder(ConstraintLayout cl) {
-            super(cl);
-            this.cl = cl;
+        public ProductListViewHolder(LinearLayout container) {
+            super(container);
+            this.container = container;
             
-            tvName = cl.findViewById(R.id.name);
-            tvShortDesc = cl.findViewById(R.id.description_short);
-            tvLongDesc = cl.findViewById(R.id.description_long);
+            tvName = container.findViewById(R.id.name);
+            tvShortDesc = container.findViewById(R.id.description_short);
+            tvLongDesc = container.findViewById(R.id.description_long);
+            ivImage = container.findViewById(R.id.image);
         }
     }
 
@@ -42,7 +46,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public ProductListAdapter.ProductListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ConstraintLayout cl = (ConstraintLayout) LayoutInflater.from(parent.getContext())
+        LinearLayout cl = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_product_list, parent, false);
         ProductListViewHolder vh = new ProductListViewHolder(cl);
         return vh;
@@ -56,7 +60,9 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.tvShortDesc.setText((d.getShortDescription()));
         holder.tvLongDesc.setText(d.getLongDescription());
 
-        holder.cl.setOnClickListener(new View.OnClickListener() {
+        Glide.with(activity).load("https://picsum.photos/200/300").into(holder.ivImage);
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);

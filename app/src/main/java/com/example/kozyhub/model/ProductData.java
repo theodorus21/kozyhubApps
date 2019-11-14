@@ -1,6 +1,5 @@
 package com.example.kozyhub.model;
 
-import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
