@@ -3,12 +3,18 @@ package com.example.kozyhub.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Cafe extends Category implements Parcelable {
+public class Property extends Category implements Parcelable {
     private int PkBranch;
     private String BranchName, BranchDesc, BranchPhone1, BranchPhone2, description;
     private String pict1, pict2, pict3, pict4, pict5, pict6;
 
-    public Cafe(int pkBranch, String branchName, String branchDesc, String branchPhone1, String branchPhone2, String description, String pict1, String pict2, String pict3, String pict4, String pict5, String pict6) {
+    public Property(String branchName, String branchDesc, String description) {
+        this.BranchName = branchName;
+        this.BranchDesc = branchDesc;
+        this.description = description;
+    }
+
+    public Property(int pkBranch, String branchName, String branchDesc, String branchPhone1, String branchPhone2, String description, String pict1, String pict2, String pict3, String pict4, String pict5, String pict6) {
         PkBranch = pkBranch;
         BranchName = branchName;
         BranchDesc = branchDesc;
@@ -23,7 +29,7 @@ public class Cafe extends Category implements Parcelable {
         this.pict6 = pict6;
     }
 
-    protected Cafe(Parcel in) {
+    protected Property(Parcel in) {
         PkBranch = in.readInt();
         BranchName = in.readString();
         BranchDesc = in.readString();
@@ -59,15 +65,15 @@ public class Cafe extends Category implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Cafe> CREATOR = new Creator<Cafe>() {
+    public static final Creator<Property> CREATOR = new Creator<Property>() {
         @Override
-        public Cafe createFromParcel(Parcel in) {
-            return new Cafe(in);
+        public Property createFromParcel(Parcel in) {
+            return new Property(in);
         }
 
         @Override
-        public Cafe[] newArray(int size) {
-            return new Cafe[size];
+        public Property[] newArray(int size) {
+            return new Property[size];
         }
     };
 

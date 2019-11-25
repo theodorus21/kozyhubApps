@@ -1,22 +1,18 @@
 package com.example.kozyhub.ui.home;
 
 import android.os.Bundle;
-import android.se.omapi.Session;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.Nullable;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kozyhub.R;
 import com.example.kozyhub.ui.booking_list.BookingListAdapter;
-import com.example.kozyhub.ui.booking_list.BookingListFragment;
 import com.example.kozyhub.ui.booking_list.BookingListViewModel;
 import com.example.kozyhub.util.session.SessionManager;
 
@@ -43,7 +39,7 @@ public class HomeFragment extends Fragment {
     protected int destinationAction;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, Bundle savedInstanceState) {
         bookingViewModel =
                 ViewModelProviders.of(this).get(BookingListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -54,7 +50,7 @@ public class HomeFragment extends Fragment {
         lmGuestHouse = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvGuestHouse.setLayoutManager(lmGuestHouse);
 
-        mAdapterGuestHouse = new BookingListAdapter(getActivity(), HomeFragment.class, bookingViewModel.getDataGuestHouse());
+        mAdapterGuestHouse = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_PROPERTY, bookingViewModel.getDataGuestHouse());
         rvGuestHouse.setAdapter(mAdapterGuestHouse);
 
         // coworking space
@@ -64,7 +60,7 @@ public class HomeFragment extends Fragment {
         lmCoworkingSpace = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvCoworkingSpace.setLayoutManager(lmCoworkingSpace);
 
-        mAdapterCoworkingSpace = new BookingListAdapter(getActivity(), HomeFragment.class, bookingViewModel.getDataCoworkingSpace());
+        mAdapterCoworkingSpace = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_PROPERTY, bookingViewModel.getDataCoworkingSpace());
         rvCoworkingSpace.setAdapter(mAdapterCoworkingSpace);
 
         // cafe
@@ -74,7 +70,7 @@ public class HomeFragment extends Fragment {
         lmCafe = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvCafe.setLayoutManager(lmCafe);
 
-        mAdapterCafe = new BookingListAdapter(getActivity(), HomeFragment.class, bookingViewModel.getDataCafe());
+        mAdapterCafe = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_CAFE, bookingViewModel.getDataCafe());
         rvCafe.setAdapter(mAdapterCafe);
 
         // catering
@@ -88,7 +84,7 @@ public class HomeFragment extends Fragment {
             lmCatering = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
             rvCatering.setLayoutManager(lmCatering);
 
-            mAdapterCatering= new BookingListAdapter(getActivity(), HomeFragment.class, bookingViewModel.getDataCatering());
+            mAdapterCatering = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_CAFE, bookingViewModel.getDataCatering());
             rvCatering.setAdapter(mAdapterCatering);
         }
 

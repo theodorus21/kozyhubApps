@@ -19,8 +19,8 @@ public class NewsFragment extends ProductListFragment {
         View root = super.onCreateView(inflater, container, savedInstanceState);
 
         ProductData[] data = {
-                new ProductData("Design Thinking Workshop", "At KozyHub Palmerah", "20 December 2019"),
-                new ProductData("Worklife Balance Workshop", "At Glora House", "29 December 2019")
+                new ProductData("Design Thinking Workshop", "","At KozyHub Palmerah", "20 December 2019"),
+                new ProductData("Worklife Balance Workshop", "","At Glora House", "29 December 2019")
         };
         this.setData(data);
 

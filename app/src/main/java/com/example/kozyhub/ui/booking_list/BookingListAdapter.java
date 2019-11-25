@@ -1,7 +1,6 @@
 package com.example.kozyhub.ui.booking_list;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -21,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.kozyhub.R;
 import com.example.kozyhub.constant.URL;
-import com.example.kozyhub.model.Cafe;
 import com.example.kozyhub.model.Category;
 import com.example.kozyhub.ui.home.HomeFragment;
 import com.example.kozyhub.ui.home.HomeFragmentDirections;
@@ -29,7 +26,11 @@ import com.example.kozyhub.ui.home.HomeFragmentDirections;
 public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.BookingListViewHolder> {
     private Activity activity;
     private Class origin;
+    private int destination;
     private MutableLiveData<Category[]> data;
+
+    public static final int DESTINATION_PROPERTY = 1;
+    public static final int DESTINATION_CAFE = 2;
 
     public static class BookingListViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout container;
@@ -45,9 +46,10 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
         }
     }
 
-    public BookingListAdapter(Activity activity, Class origin, MutableLiveData<Category[]> data) {
+    public BookingListAdapter(Activity activity, Class origin, int destination, MutableLiveData<Category[]> data) {
         this.activity = activity;
         this.origin = origin;
+        this.destination = destination;
         this.data = data;
 
         this.data.observe((LifecycleOwner) this.activity, new Observer<Category[]>() {
@@ -81,10 +83,17 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);
                 NavDirections action = null;
                 if (origin == BookingListFragment.class) {
-                    action = BookingListFragmentDirections.actionNavigationBookingToCafeDetailFragment(c.getName(), (Cafe) c);
-                }
-                else if (origin == HomeFragment.class) {
-                    action = HomeFragmentDirections.actionNavigationHomeToCafeDetailFragment(c.getName(), (Cafe) c);
+                    if (destination == DESTINATION_PROPERTY) {
+                        action = BookingListFragmentDirections.actionNavigationBookingToPropertyDetailFragment(c.getName(), c);
+                    } else {
+                        action = BookingListFragmentDirections.actionNavigationBookingToCafeDetailFragment(c.getName(), c);
+                    }
+                } else if (origin == HomeFragment.class) {
+                    if (destination == DESTINATION_PROPERTY) {
+                        action = HomeFragmentDirections.actionNavigationHomeToPropertyDetailFragment(c.getName(), c);
+                    } else {
+                        action = HomeFragmentDirections.actionNavigationHomeToCafeDetailFragment(c.getName(), c);
+                    }
                 }
                 if (action != null) {
                     navController.navigate(action);

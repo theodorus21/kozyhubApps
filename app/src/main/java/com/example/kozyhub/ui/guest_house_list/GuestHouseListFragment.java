@@ -18,8 +18,8 @@ public class GuestHouseListFragment extends ProductListFragment {
         View root = super.onCreateView(inflater, container, savedInstanceState);
 
         ProductData[] data = {
-                new ProductData("Blockchain Guesthouse", "At Palmerah", "50,000 IDR/hour"),
-                new ProductData("Goden Guesthouse", "At Palmerah", "50,000 IDR/hour")
+                new ProductData("Blockchain Guesthouse","", "At Palmerah", "50,000 IDR/hour"),
+                new ProductData("Goden Guesthouse", "","At Palmerah", "50,000 IDR/hour")
         };
         this.setData(data);
 

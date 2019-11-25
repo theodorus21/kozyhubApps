@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 import com.example.kozyhub.constant.Types;
 import com.example.kozyhub.model.Cafe;
 import com.example.kozyhub.model.Category;
+import com.example.kozyhub.model.ProductData;
+import com.example.kozyhub.model.Property;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -36,24 +38,21 @@ public class BookingListViewModel extends ViewModel {
         dataCatering = new MutableLiveData<>();
 
         // seeds
-        Category[] seedGuestHouse = {
-                new Category("guest house 1", ""),
-                new Category("guest house 2", "")
-        };
+        Category[] seedGuestHouse = {};
         dataGuestHouse.setValue(seedGuestHouse);
-        Category[] seedCoworkingSpace = {
-                new Category("coworking space 1", ""),
-                new Category("coworking space 2", "")
-        };
+        Category[] seedCoworkingSpace = {};
         dataCoworkingSpace.setValue(seedCoworkingSpace);
         Category[] seedCafe = {};
         dataCafe.setValue(seedCafe);
+
         Category[] seedCatering = {
-                new Category("catering 1", ""),
-                new Category("catering 2", "")
+                new ProductData("catering 1", "", "", ""),
+                new ProductData("catering 2", "", "", "")
         };
         dataCatering.setValue(seedCatering);
 
+        populateGuestHouseData();
+        populateCoworkingSpaceData();
         populateCafeData();
     }
 
@@ -129,4 +128,88 @@ public class BookingListViewModel extends ViewModel {
             }
         });
     }
+
+    public void populateGuestHouseData() {
+        final OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://kozyhub.com/api/categories/guest_house_list.php")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    ResponseBody responseBody = response.body();
+
+                    if (!response.isSuccessful())
+                        throw new IOException("Unexpected code " + response);
+
+                    String jsonResponse = responseBody.string();
+                    Moshi moshi = new Moshi.Builder().build();
+
+                    JsonAdapter<com.example.kozyhub.model.Response<Cafe>> jsonAdapter = moshi.adapter(Types.ResponseProperty);
+                    com.example.kozyhub.model.Response res = jsonAdapter.fromJson(jsonResponse);
+
+                    Category[] categories = new Category[res.result.size()];
+                    for (int i = 0; i < res.result.size(); i++) {
+                        categories[i] = (Property) res.result.get(i);
+                    }
+                    dataGuestHouse.postValue(categories);
+
+
+                } catch (IOException e) {
+                    System.out.println("IOException" + e.getStackTrace());
+                }
+            }
+        });
+    }
+
+    public void populateCoworkingSpaceData() {
+        final OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://kozyhub.com/api/categories/co_working_list.php")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    ResponseBody responseBody = response.body();
+
+                    if (!response.isSuccessful())
+                        throw new IOException("Unexpected code " + response);
+
+                    String jsonResponse = responseBody.string();
+                    Moshi moshi = new Moshi.Builder().build();
+
+                    JsonAdapter<com.example.kozyhub.model.Response<Cafe>> jsonAdapter = moshi.adapter(Types.ResponseProperty);
+                    com.example.kozyhub.model.Response res = jsonAdapter.fromJson(jsonResponse);
+
+                    Category[] categories = new Category[res.result.size()];
+                    for (int i = 0; i < res.result.size(); i++) {
+                        categories[i] = (Property) res.result.get(i);
+                    }
+                    dataCoworkingSpace.postValue(categories);
+
+
+                } catch (IOException e) {
+                    System.out.println("IOException" + e.getStackTrace());
+                }
+            }
+        });
+    }
+
+
 }

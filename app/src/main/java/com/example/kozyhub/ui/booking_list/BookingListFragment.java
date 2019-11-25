@@ -47,7 +47,7 @@ public class BookingListFragment extends Fragment {
         lmGuestHouse = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvGuestHouse.setLayoutManager(lmGuestHouse);
 
-        mAdapterGuestHouse = new BookingListAdapter(getActivity(), BookingListFragment.class, bookingViewModel.getDataGuestHouse());
+        mAdapterGuestHouse = new BookingListAdapter(getActivity(), BookingListFragment.class, BookingListAdapter.DESTINATION_PROPERTY, bookingViewModel.getDataGuestHouse());
         rvGuestHouse.setAdapter(mAdapterGuestHouse);
 
         // coworking space
@@ -57,7 +57,7 @@ public class BookingListFragment extends Fragment {
         lmCoworkingSpace = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvCoworkingSpace.setLayoutManager(lmCoworkingSpace);
 
-        mAdapterCoworkingSpace = new BookingListAdapter(getActivity(), BookingListFragment.class, bookingViewModel.getDataCoworkingSpace());
+        mAdapterCoworkingSpace = new BookingListAdapter(getActivity(), BookingListFragment.class, BookingListAdapter.DESTINATION_PROPERTY, bookingViewModel.getDataCoworkingSpace());
         rvCoworkingSpace.setAdapter(mAdapterCoworkingSpace);
 
         // cafe
@@ -67,7 +67,7 @@ public class BookingListFragment extends Fragment {
         lmCafe = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvCafe.setLayoutManager(lmCafe);
 
-        mAdapterCafe = new BookingListAdapter(getActivity(), BookingListFragment.class, bookingViewModel.getDataCafe());
+        mAdapterCafe = new BookingListAdapter(getActivity(), BookingListFragment.class, BookingListAdapter.DESTINATION_CAFE, bookingViewModel.getDataCafe());
         rvCafe.setAdapter(mAdapterCafe);
 
         // catering
@@ -81,7 +81,7 @@ public class BookingListFragment extends Fragment {
             lmCatering = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
             rvCatering.setLayoutManager(lmCatering);
 
-            mAdapterCatering = new BookingListAdapter(getActivity(), BookingListFragment.class, bookingViewModel.getDataCatering());
+            mAdapterCatering = new BookingListAdapter(getActivity(), BookingListFragment.class, BookingListAdapter.DESTINATION_CAFE, bookingViewModel.getDataCatering());
             rvCatering.setAdapter(mAdapterCatering);
         }
 

@@ -20,7 +20,6 @@ public class ProductDetailFragment extends Fragment {
     public ProductDetailFragment() {
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,17 +28,14 @@ public class ProductDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            data = bundle.getParcelable("productdata");
-        }
+        data = (ProductData) ProductDetailFragmentArgs.fromBundle(getArguments()).getCategory();
 
         final View root = inflater.inflate(R.layout.fragment_product_detail, container, false);
 
         if (data != null) {
-            ((TextView)root.findViewById(R.id.name)).setText(data.getName());
-            ((TextView)root.findViewById(R.id.description_short)).setText(data.getShortDescription());
-            ((TextView)root.findViewById(R.id.description_long)).setText(data.getLongDescription());
+            ((TextView) root.findViewById(R.id.name)).setText(data.getName());
+            ((TextView) root.findViewById(R.id.description_short)).setText(data.getShortDescription());
+            ((TextView) root.findViewById(R.id.description_long)).setText(data.getLongDescription());
         }
 
         return root;

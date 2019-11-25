@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SessionManager.setUser(new User("wkwk", "wkwk@wkwk.com", 100000));
+                SessionManager.setUser(new User("wkwk", "wkwk@wkwk.com", "081234567",100000));
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_profile_to_navigation_home);
                 Toast.makeText(getContext(), "Welcome, wkwk", Toast.LENGTH_LONG).show();
             }

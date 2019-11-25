@@ -2,6 +2,7 @@ package com.example.kozyhub.ui.cafe;
 
 import android.os.Bundle;
 
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,7 +48,8 @@ public class CafeDetailFragment extends Fragment {
 
     private MutableLiveData<List<Menu>> menuListData;
 
-    public CafeDetailFragment() {}
+    public CafeDetailFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +63,7 @@ public class CafeDetailFragment extends Fragment {
         tvLongDescription = root.findViewById(R.id.description_long);
         ivImage = root.findViewById(R.id.image);
 
-        cafe = CafeDetailFragmentArgs.fromBundle(getArguments()).getCafe();
+        cafe = (Cafe) CafeDetailFragmentArgs.fromBundle(getArguments()).getCategory();
         if (cafe != null) {
             tvName.setText(cafe.getName());
             tvShortDescription.setText(cafe.getBranchDesc());
@@ -72,7 +74,7 @@ public class CafeDetailFragment extends Fragment {
         rvRowMenu = root.findViewById(R.id.recycler_view_row_menu);
         rvRowMenu.setHasFixedSize(true);
 
-        lmMenuList = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        lmMenuList = new LinearLayoutManager(this.getContext());
         rvRowMenu.setLayoutManager(lmMenuList);
 
         mAdapterMenuList = new MenuListAdapter(getActivity(), CafeDetailFragment.class, menuListData);

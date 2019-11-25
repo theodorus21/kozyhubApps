@@ -117,7 +117,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MenuLi
         if (mr.menuLeft != null) {
             holder.cardMenuLeft.setVisibility(View.VISIBLE);
             holder.tvNameLeft.setText(mr.menuLeft.MenuName);
-            holder.tvPriceLeft.setText(mr.menuLeft.MenuPrice + "");
+            holder.tvPriceLeft.setText(mr.menuLeft.formatMenuPrice());
             if (mr.menuLeft.MenuPict != "") {
                 Glide.with(activity).load(URL.BaseURL + mr.menuLeft.MenuPict).into(holder.ivMenuLeft);
             }
@@ -136,7 +136,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MenuLi
         if (mr.menuRight != null) {
             holder.cardMenuRight.setVisibility(View.VISIBLE);
             holder.tvNameRight.setText(mr.menuRight.MenuName);
-            holder.tvPriceRight.setText(mr.menuRight.MenuPrice + "");
+            holder.tvPriceRight.setText(mr.menuRight.formatMenuPrice());
             if (mr.menuRight.MenuPict != "") {
                 Glide.with(activity).load(URL.BaseURL + mr.menuRight.MenuPict).into(holder.ivMenuRight);
             }

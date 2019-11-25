@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/homeapps"
             tools:srcCompat="@drawable/homeapps" />
@@ -31,7 +31,7 @@
                 android:paddingTop="10dp"
                 android:text="Name"
                 android:textColor="@color/colorPrimary"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:autoSizeTextType="none" />
 

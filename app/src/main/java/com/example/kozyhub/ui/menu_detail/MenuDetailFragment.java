@@ -40,7 +40,7 @@ public class MenuDetailFragment extends Fragment {
         if (this.menu != null) {
             Glide.with(getActivity()).load(URL.BaseURL + this.menu.MenuPict).into(this.ivImage);
             this.tvName.setText(menu.MenuName);
-            this.tvShortDescription.setText(menu.MenuPrice + "");
+            this.tvShortDescription.setText(menu.formatMenuPrice());
             this.tvLongDescription.setVisibility(View.GONE);
             this.tvBody.setText(menu.MenuDesc);
         }

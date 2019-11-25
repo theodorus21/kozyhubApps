@@ -3,6 +3,8 @@ package com.example.kozyhub.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.kozyhub.util.string.StringHelper;
+
 public class Menu implements Parcelable {
     public int PkMenuCafe;
     public String MenuName, MenuPict, MenuDesc;
@@ -23,6 +25,10 @@ public class Menu implements Parcelable {
         dest.writeString(MenuPict);
         dest.writeString(MenuDesc);
         dest.writeFloat(MenuPrice);
+    }
+
+    public String formatMenuPrice() {
+        return StringHelper.FormatRupiah(this.MenuPrice);
     }
 
     @Override

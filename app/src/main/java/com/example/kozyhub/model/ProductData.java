@@ -3,31 +3,31 @@ package com.example.kozyhub.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ProductData implements Parcelable {
-    private String name, shortDescription, longDescription;
+public class ProductData extends Category implements Parcelable {
+    private String shortDescription, longDescription;
 
-    public ProductData(String name, String shortDescription, String longDescription) {
-        this.name = name;
+    public ProductData(String name, String image, String shortDescription, String longDescription) {
+        super(name, image);
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public String getLongDescription() {
-        return longDescription;
-    }
-
     protected ProductData(Parcel in) {
-        name = in.readString();
+        super(in);
         shortDescription = in.readString();
         longDescription = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeString(shortDescription);
+        dest.writeString(longDescription);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ProductData> CREATOR = new Creator<ProductData>() {
@@ -42,15 +42,11 @@ public class ProductData implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(shortDescription);
-        dest.writeString(longDescription);
+    public String getLongDescription() {
+        return longDescription;
     }
 }

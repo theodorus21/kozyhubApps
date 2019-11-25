@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_cafeDetailFragment"
             app:destination="@id/cafeDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_propertyDetailFragment"
+            app:destination="@id/propertyDetailFragment" />
     </fragment>
 
     <fragment
@@ -33,6 +36,9 @@
         <action
             android:id="@+id/action_navigation_booking_to_cafeDetailFragment"
             app:destination="@id/cafeDetailFragment" />
+        <action
+            android:id="@+id/action_navigation_booking_to_propertyDetailFragment"
+            app:destination="@id/propertyDetailFragment" />
     </fragment>
 
     <fragment
@@ -58,7 +64,14 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.kozyhub.ui.product_detail.ProductDetailFragment"
         android:label="Product Detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="com.example.kozyhub.model.Category" />
+    </fragment>
     <fragment
         android:id="@+id/cafeDetailFragment"
         android:name="com.example.kozyhub.ui.cafe.CafeDetailFragment"
@@ -68,8 +81,8 @@
             android:name="name"
             app:argType="string" />
         <argument
-            android:name="cafe"
-            app:argType="com.example.kozyhub.model.Cafe" />
+            android:name="category"
+            app:argType="com.example.kozyhub.model.Category" />
         <action
             android:id="@+id/action_cafeDetailFragment_to_menuDetailFragment"
             app:destination="@id/menuDetailFragment" />
@@ -85,6 +98,32 @@
         <argument
             android:name="menu"
             app:argType="com.example.kozyhub.model.Menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetailFragment"
+        android:name="com.example.kozyhub.ui.property_detail.PropertyDetailFragment"
+        android:label="Thankyou"
+        tools:layout="@layout/fragment_property_detail">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="com.example.kozyhub.model.Category" />
+        <action
+            android:id="@+id/action_propertyDetailFragment_to_thankyouFragment"
+            app:destination="@id/thankyouFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thankyouFragment"
+        android:name="com.example.kozyhub.ui.thankyou.ThankyouFragment"
+        android:label="Thankyou"
+        tools:layout="@layout/fragment_thankyou">
+        <action
+            android:id="@+id/action_thankyouFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
 
