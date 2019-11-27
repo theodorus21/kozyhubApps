@@ -102,7 +102,7 @@
     <fragment
         android:id="@+id/propertyDetailFragment"
         android:name="com.example.kozyhub.ui.property_detail.PropertyDetailFragment"
-        android:label="Thankyou"
+        android:label="{name}"
         tools:layout="@layout/fragment_property_detail">
         <argument
             android:name="name"

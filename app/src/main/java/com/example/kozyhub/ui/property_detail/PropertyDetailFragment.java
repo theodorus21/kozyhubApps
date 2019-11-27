@@ -19,16 +19,35 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.kozyhub.R;
+import com.example.kozyhub.constant.Types;
 import com.example.kozyhub.constant.URL;
+import com.example.kozyhub.model.Cafe;
+import com.example.kozyhub.model.Category;
 import com.example.kozyhub.model.Property;
+import com.example.kozyhub.model.Success;
 import com.example.kozyhub.model.User;
 import com.example.kozyhub.ui.cafe.CafeDetailFragmentArgs;
 import com.example.kozyhub.util.session.SessionManager;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.Calendar;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class PropertyDetailFragment extends Fragment {
     private TextView tvName, tvShortDescription, tvLongDescription;
@@ -39,6 +58,7 @@ public class PropertyDetailFragment extends Fragment {
     private Button btnSubmit;
 
     private Property property;
+    private boolean isSendingInquiry = false;
 
     public PropertyDetailFragment() {
     }
@@ -87,12 +107,82 @@ public class PropertyDetailFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                navController.navigate(R.id.action_propertyDetailFragment_to_thankyouFragment);
+                if (isSendingInquiry) {
+                    Toast.makeText(getContext(), "Transcaction is progress", Toast.LENGTH_LONG).show();
+                } else {
+                    sendInquiry(etDate.getText().toString(), etDuration.getText().toString(), etRoom.getText().toString(),
+                            etName.getText().toString(), etEmail.getText().toString(), etPhone.getText().toString(),
+                            property.getPkBranch() + "", etNotes.getText().toString(), property.getPropertyType() + "");
+                }
             }
         });
 
         return root;
+    }
+
+    public void sendInquiry(String tgl, String dur, String qty, String name, String email, String phone, String loc, String note, String type) {
+        isSendingInquiry = true;
+
+        final OkHttpClient client = new OkHttpClient();
+
+        System.out.println("tgl:" + tgl);
+        System.out.println("dur:" + dur);
+        System.out.println("qty:" + qty);
+        System.out.println("name:" + name);
+        System.out.println("email:" + email);
+        System.out.println("phone:" + phone);
+        System.out.println("loc:" + loc);
+        System.out.println("note:" + note);
+        System.out.println("type:" + type);
+
+        RequestBody body = new FormBody.Builder()
+                .add("tgl", tgl)
+                .add("dur", dur)
+                .add("qty", qty)
+                .add("name", name)
+                .add("email", email)
+                .add("phone", phone)
+                .add("loc", loc)
+                .add("note", note)
+                .add("type", type).build();
+
+        Request request = new Request.Builder()
+                .url("https://kozyhub.com/api/categories/inquiry.php").post(body).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                isSendingInquiry = false;
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                isSendingInquiry = false;
+
+                ResponseBody responseBody = response.body();
+
+                if (!response.isSuccessful())
+                    throw new IOException("Unexpected code " + response);
+
+                String jsonResponse = responseBody.string();
+                Moshi moshi = new Moshi.Builder().build();
+
+                JsonAdapter<Success> jsonAdapter = moshi.adapter(Success.class);
+                final Success res = jsonAdapter.fromJson(jsonResponse);
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (res.info.equals("success")) {
+                            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                            navController.navigate(R.id.action_propertyDetailFragment_to_thankyouFragment);
+                        } else {
+                            Toast.makeText(getActivity(), res.result, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void showDatePickerDialog(View v) {
@@ -120,7 +210,7 @@ public class PropertyDetailFragment extends Fragment {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            etDate.setText(String.format("%2d/%2d/%d", day, month + 1, year));
+            etDate.setText(String.format("%d-%2d-%2d", year, month + 1, day));
         }
     }
 

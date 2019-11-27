@@ -158,7 +158,9 @@ public class BookingListViewModel extends ViewModel {
 
                     Category[] categories = new Category[res.result.size()];
                     for (int i = 0; i < res.result.size(); i++) {
-                        categories[i] = (Property) res.result.get(i);
+                        Property p = (Property) res.result.get(i);
+                        p.setPropertyType(Property.TYPE_GUEST_HOUSE);
+                        categories[i] = p;
                     }
                     dataGuestHouse.postValue(categories);
 
@@ -199,7 +201,9 @@ public class BookingListViewModel extends ViewModel {
 
                     Category[] categories = new Category[res.result.size()];
                     for (int i = 0; i < res.result.size(); i++) {
-                        categories[i] = (Property) res.result.get(i);
+                        Property p = (Property) res.result.get(i);
+                        p.setPropertyType(Property.TYPE_COWORKING_SPACE);
+                        categories[i] = p;
                     }
                     dataCoworkingSpace.postValue(categories);
 

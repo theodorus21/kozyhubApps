@@ -4,9 +4,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Property extends Category implements Parcelable {
+    public static final int TYPE_GUEST_HOUSE = 1;
+    public static final int TYPE_COWORKING_SPACE = 2;
     private int PkBranch;
     private String BranchName, BranchDesc, BranchPhone1, BranchPhone2, description;
     private String pict1, pict2, pict3, pict4, pict5, pict6;
+
+    private int propertyType;
+
+    public void setPropertyType(int propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public int getPropertyType() {
+        return propertyType;
+    }
 
     public Property(String branchName, String branchDesc, String description) {
         this.BranchName = branchName;
