@@ -82,9 +82,9 @@ public class PropertyDetailFragment extends Fragment {
             formInquiry.setVisibility(View.VISIBLE);
 
             User user = SessionManager.getInstance().getUser(getActivity());
-            etName.setText(user.getFullname());
-            etEmail.setText(user.getEmail());
-            etPhone.setText(user.getPhone());
+            etName.setText(user.PersonName);
+            etEmail.setText(user.PersonEmail);
+            etPhone.setText(user.PersonPhone1);
         }
 
         property = (Property) CafeDetailFragmentArgs.fromBundle(getArguments()).getCategory();

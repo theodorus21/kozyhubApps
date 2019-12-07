@@ -51,7 +51,7 @@ public class SessionManager {
         if (!isLoggedIn) {
             user = getUser(activity);
             if (user != null) {
-                isLoggedIn = !"".equals(user.getEmail());
+                isLoggedIn = !"".equals(user.PersonEmail);
             }
         }
 
