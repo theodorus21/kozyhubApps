@@ -73,7 +73,7 @@ public class BookingListFragment extends Fragment {
         // catering
         View cateringListContainer = root.findViewById(R.id.view_catering_list);
         cateringListContainer.setVisibility(View.GONE);
-        if (SessionManager.isIsLoggedIn()) {
+        if (SessionManager.getInstance().isIsLoggedIn(getActivity())) {
             cateringListContainer.setVisibility(View.VISIBLE);
             rvCatering = root.findViewById(R.id.recycler_view_catering_list);
             rvCatering.setHasFixedSize(true);

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.se.omapi.Session;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.kozyhub.R;
-import com.example.kozyhub.constant.Types;
 import com.example.kozyhub.constant.URL;
-import com.example.kozyhub.model.Cafe;
-import com.example.kozyhub.model.Category;
 import com.example.kozyhub.model.Property;
 import com.example.kozyhub.model.Success;
 import com.example.kozyhub.model.User;
@@ -82,11 +78,11 @@ public class PropertyDetailFragment extends Fragment {
         etNotes = root.findViewById(R.id.edittext_notes);
         btnSubmit = root.findViewById(R.id.btn_submit);
 
-        if (SessionManager.isIsLoggedIn()) {
+        if (SessionManager.getInstance().isIsLoggedIn(getActivity())) {
             formInquiry.setVisibility(View.VISIBLE);
 
-            User user = SessionManager.getUser();
-            etName.setText(user.getName());
+            User user = SessionManager.getInstance().getUser(getActivity());
+            etName.setText(user.getFullname());
             etEmail.setText(user.getEmail());
             etPhone.setText(user.getPhone());
         }

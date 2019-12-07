@@ -4,14 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,13 +26,13 @@ public class NotificationsFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
 
         int fragmentId = GUEST_FRAGMENT;
-        if (SessionManager.isIsLoggedIn()) {
+        if (SessionManager.getInstance().isIsLoggedIn(getActivity())) {
             fragmentId = LOGGEDIN_FRAGMENT;
         }
 
         View root = inflater.inflate(fragmentId, container, false);
 
-        if (!SessionManager.isIsLoggedIn()) {
+        if (!SessionManager.getInstance().isIsLoggedIn(getActivity())) {
             root.findViewById(R.id.btn_login_link).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

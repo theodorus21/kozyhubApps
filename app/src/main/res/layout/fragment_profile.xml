@@ -1,11 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="profile fragment"/>
+        android:layout_marginBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:text="Profile"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edittext_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="Nama lengkap"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/edittext_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="Username"
+        android:inputType="none"
+        android:focusable="false"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/edittext_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="Nomor handphone"
+        android:inputType="none"
+        android:focusable="false"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="Alamat email"
+        android:inputType="none"
+        android:focusable="false"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_corner"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_corner"
+        android:text="Log out"
+        android:textAllCaps="false"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorWhite" />
 
 </LinearLayout>

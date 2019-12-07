@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,9 +25,8 @@ public class ProfileFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SessionManager.setUser(new User("wkwk", "wkwk@wkwk.com", "081234567", 100000));
+                SessionManager.getInstance().setUser(getActivity(), new User("wkwk", "wkwk", "wkwk@wkwk.com", "phone"));
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_profile_to_navigation_home);
-                Toast.makeText(getContext(), "Welcome, wkwk", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -43,6 +44,33 @@ public class ProfileFragment extends Fragment {
     private View getMemberLayout(@NonNull LayoutInflater inflater, ViewGroup container) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        final EditText etFullname = root.findViewById(R.id.edittext_fullname);
+        final EditText etUsername= root.findViewById(R.id.edittext_username);
+        final EditText etPhone= root.findViewById(R.id.edittext_phone);
+        final EditText etEmail= root.findViewById(R.id.edittext_email);
+        final Button btnSave = root.findViewById(R.id.btn_save);
+
+        User user = SessionManager.getInstance().getUser(getActivity());
+        etFullname.setText(user.getFullname());
+        etUsername.setText(user.getUsername());
+        etPhone.setText(user.getPhone());
+        etEmail.setText(user.getEmail());
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        final Button btnLogout = root.findViewById(R.id.btn_logout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SessionManager.getInstance().invalidateUser(getActivity());
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_profile_to_navigation_home);
+            }
+        });
+
         return root;
     }
 
@@ -50,7 +78,7 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root;
 
-        if (SessionManager.isIsLoggedIn()) {
+        if (SessionManager.getInstance().isIsLoggedIn(getActivity())) {
             root = getMemberLayout(inflater, container);
         } else {
             root = getGuestLayout(inflater, container);
