@@ -31,6 +31,7 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
 
     public static final int DESTINATION_PROPERTY = 1;
     public static final int DESTINATION_CAFE = 2;
+    public static final int DESTINATION_CATERING = 3;
 
     public static class BookingListViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout container;
@@ -85,14 +86,18 @@ public class BookingListAdapter extends RecyclerView.Adapter<BookingListAdapter.
                 if (origin == BookingListFragment.class) {
                     if (destination == DESTINATION_PROPERTY) {
                         action = BookingListFragmentDirections.actionNavigationBookingToPropertyDetailFragment(c.getName(), c);
-                    } else {
+                    } else if (destination == DESTINATION_CAFE){
                         action = BookingListFragmentDirections.actionNavigationBookingToCafeDetailFragment(c.getName(), c);
+                    } else {
+                        action = BookingListFragmentDirections.actionNavigationBookingToCateringFragment(c.getName(), c);
                     }
                 } else if (origin == HomeFragment.class) {
                     if (destination == DESTINATION_PROPERTY) {
                         action = HomeFragmentDirections.actionNavigationHomeToPropertyDetailFragment(c.getName(), c);
-                    } else {
+                    } else if (destination == DESTINATION_CAFE){
                         action = HomeFragmentDirections.actionNavigationHomeToCafeDetailFragment(c.getName(), c);
+                    } else {
+                        action = HomeFragmentDirections.actionNavigationHomeToCateringFragment(c.getName(), c);
                     }
                 }
                 if (action != null) {

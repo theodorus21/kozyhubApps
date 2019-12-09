@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment {
                     public void run() {
                         if (res.info.equals("success")) {
                             User u = res.session_info.get(0);
-                            SessionManager.getInstance().setUser(getActivity(), new User(u.PersonName, u.UserName, u.PersonEmail, u.PersonPhone1));
+                            SessionManager.getInstance().setUser(getActivity(), u);
                             Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_profile_to_navigation_home);
                             Toast.makeText(getActivity(), "Welcome " + u.PersonName, Toast.LENGTH_SHORT).show();
                         } else {
@@ -92,17 +92,19 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void doEditProfile(String username, String password) {
+    private void doEditProfile(final User user, final String name, final String phone) {
         isDoingSomething = true;
 
         final OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
-                .add("username", username)
-                .add("password", password).build();
+                .add("name", name)
+                .add("phone", phone)
+                .add("pkPerson", user.PkPerson + "")
+                .build();
 
         Request request = new Request.Builder()
-                .url("https://kozyhub.com/api/categories/login.php").post(body).build();
+                .url("https://kozyhub.com/api/categories/edit_profile.php").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -128,13 +130,12 @@ public class ProfileFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        Toast.makeText(getActivity(), res.result, Toast.LENGTH_SHORT).show();
+                        User x = user;
+                        x.PersonName = name;
+                        x.PersonPhone1 = phone;
                         if (res.info.equals("success")) {
-                            User u = res.session_info.get(0);
-                            SessionManager.getInstance().setUser(getActivity(), new User(u.PersonName, u.UserName, u.PersonEmail, u.PersonPhone1));
-                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_profile_to_navigation_home);
-                            Toast.makeText(getActivity(), "Welcome " + u.PersonName, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getActivity(), res.result, Toast.LENGTH_SHORT).show();
+                            SessionManager.getInstance().setUser(getActivity(), x);
                         }
                     }
                 });
@@ -180,7 +181,7 @@ public class ProfileFragment extends Fragment {
         final EditText etEmail = root.findViewById(R.id.edittext_email);
         final Button btnSave = root.findViewById(R.id.btn_save);
 
-        User user = SessionManager.getInstance().getUser(getActivity());
+        final User user = SessionManager.getInstance().getUser(getActivity());
         etFullname.setText(user.PersonName);
         etUsername.setText(user.UserName);
         etPhone.setText(user.PersonPhone1);
@@ -189,6 +190,7 @@ public class ProfileFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                doEditProfile(user, etFullname.getText().toString(), etPhone.getText().toString());
             }
         });
 

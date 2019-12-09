@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
             lmCatering = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
             rvCatering.setLayoutManager(lmCatering);
 
-            mAdapterCatering = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_CAFE, bookingViewModel.getDataCatering());
+            mAdapterCatering = new BookingListAdapter(getActivity(), HomeFragment.class, BookingListAdapter.DESTINATION_CATERING, bookingViewModel.getDataCatering());
             rvCatering.setAdapter(mAdapterCatering);
         }
 
