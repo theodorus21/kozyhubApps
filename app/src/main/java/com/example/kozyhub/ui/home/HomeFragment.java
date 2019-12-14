@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kozyhub.R;
 import com.example.kozyhub.ui.booking_list.BookingListAdapter;
 import com.example.kozyhub.ui.booking_list.BookingListViewModel;
+import com.example.kozyhub.ui.cafe.CafeDetailFragmentDirections;
 import com.example.kozyhub.util.session.SessionManager;
 
 public class HomeFragment extends Fragment {
@@ -36,6 +41,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter mAdapterCatering;
     private RecyclerView.LayoutManager lmCatering;
 
+    private Button btnRegister;
+
     protected int destinationAction;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,6 +50,14 @@ public class HomeFragment extends Fragment {
         bookingViewModel =
                 ViewModelProviders.of(this).get(BookingListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        btnRegister = root.findViewById(R.id.btn_register);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_navigation_home_to_registerFragment);
+            }
+        });
 
         rvGuestHouse = root.findViewById(R.id.recycler_view_guest_house_list);
         rvGuestHouse.setHasFixedSize(true);
